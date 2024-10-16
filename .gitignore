@@ -41,3 +41,31 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+android/app/google-services.json
+
+# Xcode related
+ios/Runner.xcodeproj/project.pbxproj
+ios/Runner.xcworkspace/
+ios/Flutter/Flutter.podspec
+ios/Flutter/Generated.xcconfig
+ios/Flutter/ephemeral/
+
+# Windows related
+windows/flutter/ephemeral/
+windows/runner/Debug/
+windows/runner/Release/
+windows/runner/runner.exe.manifest
+windows/runner/runner.exe
+
+# Linux related
+linux/flutter/ephemeral/
+
+# macOS related
+macos/Runner.xcodeproj/project.pbxproj
+macos/Runner.xcworkspace/
+macos/Flutter/Flutter.podspec
+macos/Flutter/Generated.xcconfig
+macos/Flutter/ephemeral/
+
+# General build artifacts
+build/
