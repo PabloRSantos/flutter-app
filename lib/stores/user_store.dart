@@ -1,4 +1,5 @@
 import 'package:cointacao/repositories/auth_repository.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../models/user_model.dart';
 import '../repositories/user_repository.dart';
 
@@ -12,7 +13,16 @@ class UserStore {
 
   UserStore({required this.userRepository, required this.authRepository});
 
-  Future<void> fetchUser(String userId) async {
+  Future<void> fetchUser() async {
+    var userId = _user?.id;
+    if (userId == null) {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String? storagedId = prefs.getString('userId');
+      if (storagedId == null) return;
+
+      userId = storagedId;
+    }
+
     _user = await userRepository.getUser(userId);
   }
 
@@ -39,6 +49,9 @@ class UserStore {
     }
 
     _user = await userRepository.getUser(id);
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('userId', id);
 
     return _user;
   }

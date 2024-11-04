@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "793315550168",
+    "project_id": "cointacao",
+    "storage_bucket": "cointacao.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:793315550168:android:59c69b981f8528f50488ad",
+        "android_client_info": {
+          "package_name": "com.example.cointacao"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmsOM9QhVYvBQWE3JsYdLtfxbWs1v1fNg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -36,4 +36,18 @@ class CoinDetailStore {
     user.pushCoin(coinCode);
     await userRepository.update(user);
   }
+
+  Future<void> unfavorite(String coinCode, String? userId) async {
+    if (userId == null) {
+      throw Error();
+    }
+
+    var user = await userRepository.getUser(userId);
+    if (user == null) {
+      throw Error();
+    }
+
+    user.deleteCoin(coinCode);
+    await userRepository.update(user);
+  }
 }

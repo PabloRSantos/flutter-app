@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAmsOM9QhVYvBQWE3JsYdLtfxbWs1v1fNg',
-    appId: '1:793315550168:android:2bd9724b69b84be60488ad',
+    appId: '1:793315550168:android:59c69b981f8528f50488ad',
     messagingSenderId: '793315550168',
     projectId: 'cointacao',
     storageBucket: 'cointacao.appspot.com',
@@ -83,4 +83,5 @@ class DefaultFirebaseOptions {
     authDomain: 'cointacao.firebaseapp.com',
     storageBucket: 'cointacao.appspot.com',
   );
+
 }

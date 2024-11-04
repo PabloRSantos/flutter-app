@@ -4,7 +4,6 @@ import 'package:cointacao/stores/coin_store.dart';
 import 'package:cointacao/stores/user_store.dart';
 import 'package:cointacao/utils/routes.dart';
 import 'package:cointacao/utils/theme.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
@@ -16,17 +15,22 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(const MyApp());
+  final userStore = StoreFactory().getUserStore();
+  await userStore.fetchUser();
+
+  runApp(MyApp(userStore: userStore));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final UserStore userStore;
+
+  const MyApp({super.key, required this.userStore});
 
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider<UserStore>(create: (_) => StoreFactory().getUserStore()),
+        Provider<UserStore>.value(value: userStore),
         Provider<CoinStore>(create: (_) => StoreFactory().getCoinStore()),
         Provider<CoinDetailStore>(
             create: (_) => StoreFactory().getCoinDetailStore()),
@@ -34,9 +38,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Cointação',
         theme: AppTheme.lightTheme(),
-        initialRoute: FirebaseAuth.instance.currentUser == null
-            ? AppRoutes.login
-            : AppRoutes.main,
+        initialRoute: userStore.user == null ? AppRoutes.login : AppRoutes.main,
         routes: AppRoutes.routes(),
         onGenerateRoute: AppRoutes.onGenerateRoute,
       ),

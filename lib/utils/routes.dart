@@ -34,12 +34,12 @@ class AppRoutes {
 
       case login:
         return MaterialPageRoute(
-          builder: (context) => LoginScreen(),
+          builder: (context) => const LoginScreen(),
         );
 
       case signup:
         return MaterialPageRoute(
-          builder: (context) => SignUpScreen(),
+          builder: (context) => const SignUpScreen(),
         );
 
       default:

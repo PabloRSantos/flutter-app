@@ -56,6 +56,7 @@ class _CoinsScreenState extends State<CoinsScreen> {
                   itemBuilder: (_, index) {
                     final coin = store.state.value[index];
                     return CardWidget(
+                      pressable: true,
                       code: coin.code,
                       name: coin.name,
                       value: coin.value,

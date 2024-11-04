@@ -12,6 +12,8 @@ class CoinDetailModel {
       name: map['name'].split('/')[0],
       statements: (map['statements'] as List)
           .map((statement) => StatementModel.fromMap(statement))
+          .toList()
+          .reversed
           .toList(),
     );
   }
@@ -23,7 +25,7 @@ class StatementModel {
   final double value;
   final double high;
   final double low;
-  final int timestamp;
+  final String timestamp;
 
   StatementModel(
       {required this.pctChange,
@@ -40,7 +42,7 @@ class StatementModel {
       value: double.parse(map['bid']),
       high: double.parse(map['high']),
       low: double.parse(map['low']),
-      timestamp: int.parse(map['timestamp']),
+      timestamp: map['timestamp'],
     );
   }
 }

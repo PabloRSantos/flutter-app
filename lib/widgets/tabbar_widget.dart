@@ -12,8 +12,8 @@ class TabBarWidget extends StatelessWidget {
 
     return DefaultTabController(
       length: 3,
-      // initialIndex: 1,
-      initialIndex: 2,
+      initialIndex: 1,
+      // initialIndex: 2,
       child: Scaffold(
         body: TabBarView(
           children: [

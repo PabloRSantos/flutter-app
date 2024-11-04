@@ -8,6 +8,7 @@ class CardWidget extends StatelessWidget {
   final double value;
   final double varBid;
   final String pctChange;
+  final bool pressable;
 
   const CardWidget(
       {super.key,
@@ -15,7 +16,8 @@ class CardWidget extends StatelessWidget {
       required this.name,
       required this.value,
       required this.varBid,
-      required this.pctChange});
+      required this.pctChange,
+      required this.pressable});
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +35,8 @@ class CardWidget extends StatelessWidget {
         child: InkWell(
           splashColor: theme.primaryColor.withAlpha(30),
           onTap: () {
+            if (!pressable) return;
+
             Navigator.pushNamed(context, AppRoutes.detail,
                 arguments: {'code': code});
           },

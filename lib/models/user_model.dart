@@ -43,4 +43,8 @@ class UserModel {
       coins.add(coinCode);
     }
   }
+
+  deleteCoin(String coinCode) {
+    coins.remove(coinCode);
+  }
 }

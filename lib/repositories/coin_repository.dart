@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:cointacao/models/coin_detail_model.dart';
 import 'package:cointacao/models/coin_model.dart';
-import 'package:cointacao/services/db_service.dart';
 import 'package:cointacao/services/http_service.dart';
 
 class CoinRepository {
@@ -22,8 +21,11 @@ class CoinRepository {
     return coin;
   }
 
-  Future<List<CoinModel>> listCoins() async {
-    final response = await httpService.get(url: '/last/$allCoins');
+  Future<List<CoinModel>> listCoins(List<String>? codes) async {
+    final isDefined = codes != null && codes.isNotEmpty;
+    final params = isDefined ? codes.join(",") : allCoins;
+
+    final response = await httpService.get(url: '/last/$params');
     final body = jsonDecode(response.body);
 
     final List<CoinModel> coins = [];
@@ -33,28 +35,5 @@ class CoinRepository {
     });
 
     return coins;
-  }
-
-  Future<List<CoinModel>> listFavorites() async {
-    final collection = await DbService.getCollection("favorites");
-
-    var favorites = await collection.find().toList();
-    var favoriteCodes =
-        favorites.map((coin) => coin['code']).toList().join(',');
-    final response = await httpService.get(url: '/last/$favoriteCodes');
-    final body = jsonDecode(response.body);
-
-    final List<CoinModel> coins = [];
-    body.values.toList().forEach((item) {
-      final CoinModel coin = CoinModel.fromMap(item);
-      coins.add(coin);
-    });
-
-    return coins;
-  }
-
-  favoriteCoin(String code) async {
-    final collection = await DbService.getCollection("favorites");
-    await collection.insertOne({'code': code});
   }
 }
